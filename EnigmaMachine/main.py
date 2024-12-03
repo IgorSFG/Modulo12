@@ -18,7 +18,7 @@ C = Reflector('FVPJIAOYEDRZXWGCTKUQSBNMHL')
 pb = Plugboard('AR GK OX')
 
 # Enigma
-enigma = Enigma(C, iii, ii, i, pb)
+enigma = Enigma(C, i, ii, iii, pb)
 enigma.set_rotors([0, 0, 0])
 
 original = 'TESTANDO'

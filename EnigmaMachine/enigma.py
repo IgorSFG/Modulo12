@@ -27,21 +27,19 @@ class Enigma:
         char = self.pb.swap(char)
         
         # Passar pelos rotores (direção direta)
-        char = self.r1.forward(char)
-        char = self.r2.forward(char)
         char = self.r3.forward(char)
+        char = self.r2.forward(char)
+        char = self.r1.forward(char)
 
         # Passar pelo refletor
         char = self.ref.reflect(char)
 
         # Voltar pelos rotores (direção inversa)
-        char = self.r3.backward(char)
-        char = self.r2.backward(char)
         char = self.r1.backward(char)
+        char = self.r2.backward(char)
+        char = self.r3.backward(char)
 
         # Passar pelo Plugboard novamente
         char = self.pb.swap(char)
-        
-
 
         return char
