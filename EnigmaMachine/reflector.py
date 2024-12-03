@@ -1,8 +1,9 @@
 class Reflector:
-    def __init__(self, mapping):
-        self.left   = mapping
+    def __init__(self, wiring):
+        self.left   = wiring
         self.right  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     
-    def reflect(self, index):
-        char = self.right[index]
-        return self.left.index(char)
+    def reflect(self, c):
+        idx = self.right.index(c)
+        output = self.left[idx]
+        return output

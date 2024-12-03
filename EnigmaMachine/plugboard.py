@@ -1,14 +1,16 @@
 class Plugboard:
-    def __init__(self, pairs):
-        self.left = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        self.right = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    def __init__(self, wiring=''):
+        self.left = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        self.right = {}
+        for c in self.left:
+            self.right[c] = c
+        pairs = wiring.upper().split()
         for pair in pairs:
-            a, b = pair
-            pos_a = self.left.index(a)
-            pos_b = self.left.index(b)
-            self.left = self.left[:pos_a] + b + self.left[pos_a + 1:]
-            self.left = self.left[:pos_b] + a + self.left[pos_b + 1:]
-    
-    def swap(self, index):
-        char = self.right[index]
-        return self.left.index(char)
+            if len(pair) == 2:
+                a, b = pair[0], pair[1]
+                self.right[a] = b
+                self.right[b] = a
+
+    def swap(self, c):
+        output = self.right[c]
+        return output

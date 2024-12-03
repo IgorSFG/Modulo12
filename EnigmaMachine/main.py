@@ -15,11 +15,11 @@ B = Reflector('YRUHQSLDPXNGOKMIEBFZCWVJAT')
 C = Reflector('FVPJIAOYEDRZXWGCTKUQSBNMHL')
 
 # Plugboard
-pb = Plugboard(['AR', 'GK', 'OX'])
+pb = Plugboard('AR GK OX')
 
 # Enigma
-enigma = Enigma(B, i, ii, iii, pb)
-enigma.set_rotors([1, 2, 3])
+enigma = Enigma(C, iii, ii, i, pb)
+enigma.set_rotors([0, 0, 0])
 
 original = 'TESTANDO'
 print(original)

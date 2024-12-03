@@ -16,34 +16,32 @@ class Enigma:
             return char
         char = char.upper()
 
-        index = ord(char) - ord('A')
+        # Rotacionar rotores
+        reached_notch = self.r1.rotate()
+        if reached_notch:
+            reached_notch = self.r2.rotate()
+            if reached_notch:
+                self.r3.rotate()
 
         # Passar pelo Plugboard
-        index = self.pb.swap(index)
+        char = self.pb.swap(char)
         
         # Passar pelos rotores (direção direta)
-        index = self.r1.forward(index)
-        index = self.r2.forward(index)
-        index = self.r3.forward(index)
+        char = self.r1.forward(char)
+        char = self.r2.forward(char)
+        char = self.r3.forward(char)
 
         # Passar pelo refletor
-        index = self.ref.reflect(index)
+        char = self.ref.reflect(char)
 
         # Voltar pelos rotores (direção inversa)
-        index = self.r3.backward(index)
-        index = self.r2.backward(index)
-        index = self.r1.backward(index)
+        char = self.r3.backward(char)
+        char = self.r2.backward(char)
+        char = self.r1.backward(char)
 
         # Passar pelo Plugboard novamente
-        index = self.pb.swap(index)
-
-        # Rotacionar rotores
-        self.r1.rotate()
-        if self.r1.reached_notch():
-            self.r2.rotate()
-            if self.r2.reached_notch():
-                self.r3.rotate()
+        char = self.pb.swap(char)
         
-        char = chr(index + ord('A'))
+
 
         return char
