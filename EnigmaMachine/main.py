@@ -2,6 +2,7 @@ from plugboard import Plugboard
 from rotor import Rotor
 from reflector import Reflector
 from enigma import Enigma
+import sys
 
 # Rotores
 i   = Rotor('EKMFLGDQVZNTOWYHXUSPAIBRCJ', 'Q')
@@ -18,12 +19,18 @@ C = Reflector('FVPJIAOYEDRZXWGCTKUQSBNMHL')
 pb = Plugboard('AR GK OX')
 
 # Enigma
-enigma = Enigma(C, i, ii, iii, pb)
-enigma.set_rotors([0, 0, 0])
+enigma = Enigma(C, pb, i, ii, iii, [0, 0, 0])
 
-original = 'TESTANDO'
-print(original)
-criptografado = ''
-for c in original:
-   criptografado += enigma.encipher(c)
-print(criptografado)
+def main():
+   if len(sys.argv) < 2:
+      print('Usage: python main.py <text>')
+      sys.exit(1)
+      
+   original = sys.argv[1]
+   criptografado = ''
+   for c in original:
+      criptografado += enigma.encipher(c)
+   print(criptografado)
+
+if __name__ == '__main__':
+   main()
